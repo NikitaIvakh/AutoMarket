@@ -1,6 +1,14 @@
-WebApplicationBuilder applicationBuilder = WebApplication.CreateBuilder(args);
-WebApplication webApplication = applicationBuilder.Build();
+using Microsoft.AspNetCore;
 
-webApplication.MapGet("/", () => "Hello World!");
+namespace AutoMarket.Presentation
+{
+    public class Program
+    {
+        private static void Main(string[] args) =>
+            CreateWebHostBuilder(args).Build().Run();
 
-webApplication.Run();
+        public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
+            WebHost.CreateDefaultBuilder(args)
+            .UseStartup<Startup>();
+    }
+}
