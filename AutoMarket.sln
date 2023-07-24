@@ -3,7 +3,19 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.6.33829.357
 MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AutoMarket.Presentation", "AutoMarket.Presentation\AutoMarket.Presentation.csproj", "{27DBA58A-98B7-4315-A496-8E007AE8EE34}"
+EndProject
 Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{27DBA58A-98B7-4315-A496-8E007AE8EE34}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{27DBA58A-98B7-4315-A496-8E007AE8EE34}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{27DBA58A-98B7-4315-A496-8E007AE8EE34}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{27DBA58A-98B7-4315-A496-8E007AE8EE34}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
