@@ -1,5 +1,6 @@
 ﻿using AutoMarket.Presentation.Data.Interfaces;
 using AutoMarket.Presentation.Data.Mocks;
+using Microsoft.AspNetCore.Mvc;
 
 namespace AutoMarket.Presentation
 {
@@ -7,7 +8,7 @@ namespace AutoMarket.Presentation
     {
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddMvc();
+            services.AddMvc(options => options.EnableEndpointRouting = false);
             services.AddTransient<ICarsCategory, MockCategory>();
             services.AddTransient<ICars, MockCars>();
         }
@@ -17,6 +18,7 @@ namespace AutoMarket.Presentation
             applicationBuilder.UseDeveloperExceptionPage();
             applicationBuilder.UseStatusCodePages();
             applicationBuilder.UseStaticFiles();
+
             applicationBuilder.UseMvcWithDefaultRoute();
         }
     }
