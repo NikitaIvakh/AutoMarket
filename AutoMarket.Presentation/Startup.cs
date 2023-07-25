@@ -1,5 +1,6 @@
 ﻿using AutoMarket.Presentation.Data;
 using AutoMarket.Presentation.Data.Interfaces;
+using AutoMarket.Presentation.Data.Models;
 using AutoMarket.Presentation.Data.Repository;
 using Microsoft.EntityFrameworkCore;
 
@@ -16,6 +17,9 @@ namespace AutoMarket.Presentation
 
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+            services.AddScoped(scope => AutoMarketCart.GetCart(scope));
+
             services.AddMvc(options => options.EnableEndpointRouting = false);
             services.AddTransient<ICars, CarRepository>();
             services.AddTransient<ICarsCategory, CategoryRepository>();
@@ -24,6 +28,9 @@ namespace AutoMarket.Presentation
             {
                 options.UseNpgsql(_configurationRoot.GetConnectionString("DefaultConnection"));
             });
+
+            services.AddMemoryCache();
+            services.AddSession();
         }
 
         public void Configure(IApplicationBuilder applicationBuilder, IWebHostEnvironment hostingEnvironment)
@@ -31,6 +38,7 @@ namespace AutoMarket.Presentation
             applicationBuilder.UseDeveloperExceptionPage();
             applicationBuilder.UseStatusCodePages();
             applicationBuilder.UseStaticFiles();
+            applicationBuilder.UseSession();
             applicationBuilder.UseMvcWithDefaultRoute();
 
             using (var scope = applicationBuilder.ApplicationServices.CreateScope())
