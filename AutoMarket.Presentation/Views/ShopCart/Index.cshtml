@@ -1,0 +1,15 @@
+﻿@model ShopCartViewModel
+
+<div class="container">
+    @{
+        foreach (var element in Model.AutoMarketCart.ListAutoMarketItems)
+        {
+            <div class="alert alert-warning mt-3">
+                <b>Car: </b> @element.Car.Name <br />
+                <b>Price: </b> @element.Car.Price $
+            </div>
+        }
+    }
+    <hr />
+    <div class="btn btn-danger" asp-controller="Order">To pay</div>
+</div>
