@@ -11,8 +11,8 @@ namespace AutoMarket.Presentation.Data.Mocks
             {
                 return new List<Category>()
                 {
-                    new Category { CategiryName = "Electric cars", Description = "Modern mode of transport" },
-                    new Category { CategiryName = "Classic cars", Description = "Cars with internal combustion engine" },
+                    new Category { CategoryName = "Electric cars", Description = "Modern mode of transport" },
+                    new Category { CategoryName = "Classic cars", Description = "Cars with internal combustion engine" },
                 };
             }
         }
