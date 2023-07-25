@@ -1,16 +1,29 @@
-﻿using AutoMarket.Presentation.Data.Interfaces;
-using AutoMarket.Presentation.Data.Mocks;
-using Microsoft.AspNetCore.Mvc;
+﻿using AutoMarket.Presentation.Data;
+using AutoMarket.Presentation.Data.Interfaces;
+using AutoMarket.Presentation.Data.Repository;
+using Microsoft.EntityFrameworkCore;
 
 namespace AutoMarket.Presentation
 {
     public class Startup
     {
+        private readonly IConfigurationRoot _configurationRoot;
+
+        public Startup(IWebHostEnvironment webHostEnvironment)
+        {
+            _configurationRoot = new ConfigurationBuilder().SetBasePath(webHostEnvironment.ContentRootPath).AddJsonFile("dbSettings.json").Build();
+        }
+
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc(options => options.EnableEndpointRouting = false);
-            services.AddTransient<ICarsCategory, MockCategory>();
-            services.AddTransient<ICars, MockCars>();
+            services.AddTransient<ICars, CarRepository>();
+            services.AddTransient<ICarsCategory, CategoryRepository>();
+
+            services.AddDbContext<ApplicationContext>(options =>
+            {
+                options.UseNpgsql(_configurationRoot.GetConnectionString("DefaultConnection"));
+            });
         }
 
         public void Configure(IApplicationBuilder applicationBuilder, IWebHostEnvironment hostingEnvironment)
@@ -18,8 +31,13 @@ namespace AutoMarket.Presentation
             applicationBuilder.UseDeveloperExceptionPage();
             applicationBuilder.UseStatusCodePages();
             applicationBuilder.UseStaticFiles();
-
             applicationBuilder.UseMvcWithDefaultRoute();
+
+            using (var scope = applicationBuilder.ApplicationServices.CreateScope())
+            {
+                ApplicationContext applicationContext = scope.ServiceProvider.GetRequiredService<ApplicationContext>();
+                DBObjects.Initial(applicationContext);
+            }
         }
     }
 }
