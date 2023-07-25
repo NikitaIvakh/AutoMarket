@@ -6,7 +6,7 @@ namespace AutoMarket.Presentation.Data.Interfaces
     {
         IEnumerable<Car> Cars { get; }
 
-        IEnumerable<Car> GetFavoriteCars { get; set; }
+        IEnumerable<Car> GetFavoriteCars { get; }
 
         Car GetObjectCar(int carId);
     }
