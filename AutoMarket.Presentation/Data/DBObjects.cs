@@ -1,5 +1,4 @@
-﻿using AutoMarket.Presentation.Data.Interfaces;
-using AutoMarket.Presentation.Data.Models;
+﻿using AutoMarket.Presentation.Data.Models;
 
 namespace AutoMarket.Presentation.Data
 {
