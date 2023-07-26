@@ -1,0 +1,47 @@
+﻿@model Order
+
+<div class="row">
+    <h3>Order registration</h3>
+    <form class="form-horizontal" asp-controller="Order" asp-action="CheckOut" method="post">
+        <div class="form-group">
+            <label asp-for="Name"></label>
+            <div class="col-md-5">
+                <input class="form-control" asp-for="Name" />
+                <span class="text-danger" asp-validation-for="Name"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="SurName"></label>
+            <div class="col-md-5">
+                <input class="form-control" asp-for="SurName" />
+                <span class="text-danger" asp-validation-for="SurName"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="Address"></label>
+            <div class="col-md-5">
+                <input class="form-control" asp-for="Address" />
+                <span class="text-danger" asp-validation-for="Address"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="Phone"></label>
+            <div class="col-md-5">
+                <input class="form-control" asp-for="Phone" />
+                <span class="text-danger" asp-validation-for="Phone"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="Email"></label>
+            <div class="col-md-5">
+                <input class="form-control" asp-for="Email" />
+                <span class="text-danger" asp-validation-for="Email"></span>
+            </div>
+        </div>
+        <input asp-controller="Order" asp-action="Complete" class="btn btn-success" type="submit" value="Send data" />
+    </form>
+</div>
+
+<script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.5.1.min.js"></script>
+<script src="https://ajax.aspnetcdn.com/ajax/jquery.validate/1.17.0/jquery.validate.min.js"></script>
+<script src="https://ajax.aspnetcdn.com/ajax/jquery.validation.unobtrusive/3.2.10/jquery.validate.unobtrusive.min.js"></script>

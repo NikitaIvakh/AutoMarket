@@ -24,6 +24,7 @@ namespace AutoMarket.Presentation
             services.AddMvc(options => options.EnableEndpointRouting = false);
             services.AddTransient<ICars, CarRepository>();
             services.AddTransient<ICarsCategory, CategoryRepository>();
+            services.AddTransient<IAllOrders, OrdersRepository>();
 
             services.AddDbContext<ApplicationContext>(options =>
             {
