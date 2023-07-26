@@ -2,6 +2,7 @@
 using AutoMarket.Presentation.Data.Interfaces;
 using AutoMarket.Presentation.Data.Models;
 using AutoMarket.Presentation.Data.Repository;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 namespace AutoMarket.Presentation
@@ -39,7 +40,13 @@ namespace AutoMarket.Presentation
             applicationBuilder.UseStatusCodePages();
             applicationBuilder.UseStaticFiles();
             applicationBuilder.UseSession();
-            applicationBuilder.UseMvcWithDefaultRoute();
+            // applicationBuilder.UseMvcWithDefaultRoute();
+
+            applicationBuilder.UseMvc(routes =>
+            {
+                routes.MapRoute(name: "default", template: "{controller=Home}/{action=Index}/{id?}");
+                routes.MapRoute(name: "CategoryFilter", template: "Car/{action}/{category?}", defaults: new { Controller = "Car", Action = "List" });
+            });
 
             using (var scope = applicationBuilder.ApplicationServices.CreateScope())
             {
